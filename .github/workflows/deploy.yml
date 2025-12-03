@@ -30,14 +30,17 @@ jobs:
           cache-dependency-path: './Vue3/package-lock.json'
 
       - name: Install dependencies
+        working-directory: ./Vue3
         run: |
-          cd Vue3
-          npm ci
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
 
       - name: Build
-        run: |
-          cd Vue3
-          npm run build
+        working-directory: ./Vue3
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
