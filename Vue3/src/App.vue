@@ -76,6 +76,7 @@ const toggleSidebar = () => {
     <main id="content">
       <router-view v-slot="{ Component, route }">
         <transition name="fade" mode="out-in" appear>
+          <!-- Use route.path as key to force component re-render on navigation, preventing blank page issues during transitions -->
           <div :key="route.path">
             <component :is="Component" />
           </div>

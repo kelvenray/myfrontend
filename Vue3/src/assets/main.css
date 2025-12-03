@@ -747,7 +747,7 @@ input:checked + .slider:before {
     box-shadow: var(--shadow);
     cursor: pointer;
     z-index: 1000;
-    font-size: 1.2rem;
+    font-size: 1.2rem; /* Icon size - larger than previous 0.8rem text for better visibility */
     font-weight: 800;
     color: var(--accent);
     border: 2px solid var(--accent);
