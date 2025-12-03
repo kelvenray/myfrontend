@@ -238,7 +238,7 @@ const removeAlert = (index) => alerts.value.splice(index, 1)
         <div class="card col-span-2">
             <h3>Navs & Tabs (标签页)</h3>
             <p class="section-desc">内容切换组件。</p>
-            <Tabs :items="tabItems" />
+            <Tabs :tabs="tabItems" />
         </div>
 
         <!-- Navbar -->
