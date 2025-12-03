@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="NEXUS Dashboard - A Modern Admin Interface">
+  <title>TECHMAN 2025</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+</head>
+<body>
+
+  <button id="themeBtn" class="fab" aria-label="Toggle Theme">MOON</button>
+  <button id="colorSchemeBtn" class="fab" aria-label="Change Color Scheme"><i class="fas fa-palette"></i></button>
+  <button id="menuBtn" class="fab top-left" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
+
+  <div id="colorSchemePanel">
+      <div class="scheme-option active" data-scheme="purple" data-title="Purple" style="background: #8b5cf6;"></div>
+      <div class="scheme-option" data-scheme="techman" data-title="TechMan" style="background: #f97316;"></div>
+      <div class="scheme-option" data-scheme="ocean" data-title="Ocean Blue" style="background: #3b82f6;"></div>
+      <div class="scheme-option" data-scheme="forest" data-title="Forest Green" style="background: #10b981;"></div>
+      <div class="scheme-option" data-scheme="sunset" data-title="Sunset Red" style="background: #ef4444;"></div>
+  </div>
+
+  <div class="app">
+    <aside id="sidebar">
+      <h2 class="logo">TECHMAN</h2>
+      <nav>
+        <a href="#dashboard" class="nav-item active">Dashboard</a>
+        <a href="#charts" class="nav-item">图表页</a>
+        <a href="#form" class="nav-item">表单页</a>
+        <a href="#login" class="nav-item">登录页</a>
+      </nav>
+    </aside>
+
+    <main id="content">
+      <section id="dashboard" class="page active">
+        <h1 class="title">欢迎回来！</h1>
+        <div class="grid">
+          <div class="stat purple"><h3>活跃用户</h3><div>12,485</div></div>
+          <div class="stat green"><h3>总收入</h3><div>$84,567</div></div>
+          <div class="stat pink"><h3>转化率</h3><div>8.7%</div></div>
+          <div class="stat"><h3>待办任务</h3><div>48</div></div>
+        </div>
+      </section>
+
+      <section id="charts" class="page">
+        <h1 class="title">数据可视化</h1>
+        <div class="grid">
+          <div class="card">
+            <h4 class="chart-title">折线图 (多系列)</h4>
+            <div id="chart1" class="chart"></div>
+          </div>
+          <div class="card">
+            <h4 class="chart-title">柱状图</h4>
+            <div id="chart2" class="chart"></div>
+          </div>
+          <div class="card">
+            <h4 class="chart-title">饼图</h4>
+            <div id="chart3" class="chart"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="form" class="page">
+        <h1 class="title">控件展示</h1>
+        <div class="grid control-grid">
+
+            <div class="card">
+                <h3>操作按钮</h3>
+                <p class="section-desc">各种颜色和用途的按钮。</p>
+                <button class="btn primary">确认 / 提交</button>
+                <button class="btn secondary">取消 / 返回</button>
+                <button class="btn reset">重置</button>
+                <button class="btn danger">删除</button>
+            </div>
+
+            <div class="card">
+                <h3>图标按钮</h3>
+                <p class="section-desc">常用操作的紧凑按钮。</p>
+                <button class="icon-btn purple" aria-label="Edit"><i class="fas fa-edit"></i></button>
+                <button class="icon-btn pink" aria-label="Delete"><i class="fas fa-trash"></i></button>
+                <button class="icon-btn green" aria-label="Add"><i class="fas fa-plus"></i></button>
+                <button class="icon-btn grey" aria-label="More"><i class="fas fa-ellipsis-v"></i></button>
+            </div>
+
+            <div class="card">
+                <h3>输入与选择</h3>
+                <input type="text" placeholder="普通文本输入" class="input" aria-label="Text Input">
+                
+                <div class="select-wrapper custom-select-container">
+                    <div class="custom-select-trigger" tabindex="0">-- 请选择一个选项 --</div>
+                    <div class="custom-options">
+                        <div class="custom-option disabled selected" data-value="">-- 请选择一个选项 --</div>
+                        <div class="custom-option" data-value="opt1">选项一</div>
+                        <div class="custom-option" data-value="opt2">选项二</div>
+                        <div class="custom-option" data-value="opt3">选项三</div>
+                    </div>
+                    <input type="hidden" class="custom-select-input" value="">
+                </div>
+
+                <div class="date-wrapper custom-date-container">
+                    <div class="custom-date-trigger" tabindex="0">2025-11-26</div>
+                    <div class="custom-calendar">
+                        <div class="calendar-header">
+                            <button class="calendar-nav prev" aria-label="Previous Month"><i class="fas fa-chevron-left"></i></button>
+                            <span class="current-month">November 2025</span>
+                            <button class="calendar-nav next" aria-label="Next Month"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="calendar-weekdays">
+                            <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                        </div>
+                        <div class="calendar-days">
+                            <!-- JS will populate this -->
+                        </div>
+                    </div>
+                    <input type="hidden" class="custom-date-input" value="2025-11-26">
+                </div>
+
+            </div>
+
+            <div class="card">
+                <h3>单选按钮组</h3>
+                <p class="section-desc">选择单个选项。</p>
+                <div class="radio-group">
+                    <label class="radio-container">
+                        <input type="radio" name="color" value="red">
+                        <span class="radiomark"></span>
+                        红色
+                    </label>
+                    <label class="radio-container">
+                        <input type="radio" name="color" value="blue" checked>
+                        <span class="radiomark"></span>
+                        蓝色
+                    </label>
+                    <label class="radio-container">
+                        <input type="radio" name="color" value="green">
+                        <span class="radiomark"></span>
+                        绿色
+                    </label>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>开关与范围</h3>
+                <label class="checkbox-container">
+                    <input type="checkbox" checked>
+                    <span class="checkmark"></span>
+                    记住登录状态 (Checkbox)
+                </label>
+                
+                <label class="switch-container">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                    启用高级模式 (Switch)
+                </label>
+
+                <div class="range-container">
+                    <label for="myRange">设置范围值: <span id="rangeValue">50</span></label>
+                    <input type="range" min="0" max="100" value="50" class="range-slider" id="myRange">
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>多行文本域</h3>
+                <p class="section-desc">长文本输入。</p>
+                <textarea class="input" placeholder="请输入详细信息..." rows="4" aria-label="Textarea"></textarea>
+            </div>
+
+            <div class="card">
+                <h3>文件上传</h3>
+                <p class="section-desc">点击或拖拽文件。</p>
+                <div class="file-upload">
+                    <input type="file" id="fileUpload" class="file-input" accept="*/*">
+                    <label for="fileUpload" class="file-label">
+                        <i class="fas fa-cloud-upload-alt fa-2x"></i>
+                        <span>点击上传文件</span>
+                        <span class="file-name">无文件选择</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>进度条</h3>
+                <p class="section-desc">任务进度展示。</p>
+                <div class="progress-container">
+                    <div class="progress-label">75% 完成</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>星级评分</h3>
+                <p class="section-desc">用户评分组件。</p>
+                <div class="rating">
+                    <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5星"><i class="fas fa-star"></i></label>
+                    <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4星"><i class="fas fa-star"></i></label>
+                    <input type="radio" id="star3" name="rating" value="3" checked><label for="star3" title="3星"><i class="fas fa-star"></i></label>
+                    <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2星"><i class="fas fa-star"></i></label>
+                    <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1星"><i class="fas fa-star"></i></label>
+                </div>
+            </div>
+
+            <!-- 新增控件组 1 -->
+            <div class="card">
+                <h3>Accordion (手风琴)</h3>
+                <p class="section-desc">可折叠的内容面板。</p>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Section 1</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>这是第一部分的内容。支持平滑的展开和折叠动画。</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Section 2</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>这是第二部分的内容。可以放入任何HTML元素。</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Section 3</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>这是第三部分的内容。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Alerts (警告框)</h3>
+                <p class="section-desc">反馈提示信息。</p>
+                <div class="alert success">
+                    <i class="fas fa-check-circle"></i> 
+                    <span>操作成功完成。</span>
+                    <span class="close-btn">&times;</span>
+                </div>
+                <div class="alert warning">
+                    <i class="fas fa-exclamation-triangle"></i> 
+                    <span>注意：请检查您的输入。</span>
+                    <span class="close-btn">&times;</span>
+                </div>
+                <div class="alert error">
+                    <i class="fas fa-times-circle"></i> 
+                    <span>错误：发生了一个问题。</span>
+                    <span class="close-btn">&times;</span>
+                </div>
+                <div class="alert info">
+                    <i class="fas fa-info-circle"></i> 
+                    <span>信息：有新的更新可用。</span>
+                    <span class="close-btn">&times;</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Badge & Breadcrumb</h3>
+                <p class="section-desc">徽章与面包屑导航。</p>
+                <div style="margin-bottom: 1.5rem;">
+                    <span class="badge primary">Primary</span>
+                    <span class="badge secondary">Secondary</span>
+                    <span class="badge success">Success</span>
+                    <span class="badge danger">Danger</span>
+                    <span class="badge warning">Warning</span>
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <span class="badge rounded primary">12</span>
+                    <span class="badge rounded success"><i class="fas fa-check"></i></span>
+                    <span class="badge rounded danger">!</span>
+                </div>
+                
+                <h4 style="margin-bottom: 0.5rem; font-size: 1rem; color: var(--accent);">Breadcrumb</h4>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">首页</a></li>
+                        <li class="breadcrumb-item"><a href="#">管理</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">数据列表</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="card">
+                <h3>Button Group</h3>
+                <p class="section-desc">组合按钮。</p>
+                <div class="btn-group">
+                    <button class="btn small">左</button>
+                    <button class="btn small">中</button>
+                    <button class="btn small">右</button>
+                </div>
+                <br><br>
+                <div class="btn-group vertical">
+                    <button class="btn small">顶部</button>
+                    <button class="btn small">中间</button>
+                    <button class="btn small">底部</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Collapse</h3>
+                <p class="section-desc">折叠内容切换。</p>
+                <button class="btn primary small" id="collapseBtn" style="margin-bottom: 1rem;">
+                    切换显示状态
+                </button>
+                <div id="collapseContent" class="collapse-content">
+                    <div class="collapse-card-body">
+                        这里是被折叠的内容。它可以包含任何信息，点击上方按钮来切换显示或隐藏。
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>List Group</h3>
+                <p class="section-desc">列表组。</p>
+                <ul class="list-group">
+                    <li class="list-group-item active">
+                        <i class="fas fa-star"></i> 活跃项
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-envelope"></i> 收件箱 
+                        <span class="badge rounded primary" style="font-size: 0.7em; padding: 0.2em 0.5em; margin-left: auto;">14</span>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-cog"></i> 设置
+                    </li>
+                    <li class="list-group-item disabled">
+                        <i class="fas fa-ban"></i> 禁用项
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 新增控件组 2 & 3 -->
+            <div class="card col-span-2">
+                <h3>Navs & Tabs (标签页)</h3>
+                <p class="section-desc">内容切换组件。</p>
+                <div class="tabs">
+                    <div class="tab-header">
+                        <div class="tab-item active" data-tab="tab1">Home</div>
+                        <div class="tab-item" data-tab="tab2">Profile</div>
+                        <div class="tab-item" data-tab="tab3">Contact</div>
+                    </div>
+                    <div class="tab-content">
+                        <div id="tab1" class="tab-pane active">
+                            <p>Home tab content. Welcome back!</p>
+                        </div>
+                        <div id="tab2" class="tab-pane">
+                            <p>Profile tab content. User settings here.</p>
+                        </div>
+                        <div id="tab3" class="tab-pane">
+                            <p>Contact tab content. Get in touch.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card col-span-2">
+                <h3>Navbar (导航栏)</h3>
+                <p class="section-desc">顶部导航演示。</p>
+                <nav class="navbar-demo">
+                    <a href="#" class="navbar-brand">Logo</a>
+                    <div class="navbar-menu">
+                        <a href="#" class="navbar-item active">Home</a>
+                        <a href="#" class="navbar-item">Link</a>
+                        <div class="navbar-item dropdown-toggle">
+                            <span>Menu <i class="fas fa-caret-down"></i></span>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="card">
+                <h3>Pagination (分页)</h3>
+                <p class="section-desc">多页数据导航。</p>
+                <div class="pagination-wrapper">
+                    <ul class="pagination">
+                        <li class="page-item disabled"><a href="#" class="page-link"><i class="fas fa-chevron-left"></i></a></li>
+                        <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                        <li class="page-item"><a href="#" class="page-link">2</a></li>
+                        <li class="page-item"><a href="#" class="page-link">3</a></li>
+                        <li class="page-item"><a href="#" class="page-link"><i class="fas fa-chevron-right"></i></a></li>
+                    </ul>
+                    <div class="page-jump">
+                        <span>跳转至</span>
+                        <input type="number" class="page-jump-input" placeholder="#" min="1">
+                        <span>页</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Popovers & Tooltips</h3>
+                <p class="section-desc">浮层提示信息。</p>
+                <button class="btn secondary small popover-trigger" data-content="这是一段弹出框的内容！">
+                    点击显示 Popover
+                </button>
+                <br><br>
+                <button class="btn secondary small tooltip-trigger" data-tooltip="这是一个工具提示">
+                    悬停显示 Tooltip
+                </button>
+            </div>
+
+            <div class="card">
+                <h3>Modals & Toasts</h3>
+                <p class="section-desc">模态框与通知。</p>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <button class="btn primary small" id="openModalBtn" style="margin-bottom: 0;">打开模态框 (Modal)</button>
+                    <button class="btn success small" id="showToastBtn" style="margin-bottom: 0;">显示通知 (Toast)</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Multi Tags Input</h3>
+                <p class="section-desc">多标签输入框。</p>
+                <div class="tags-input-container" id="tagsInput">
+                    <div class="tags-list">
+                        <span class="tag-item">Vue <i class="fas fa-times" data-remove></i></span>
+                        <span class="tag-item">React <i class="fas fa-times" data-remove></i></span>
+                    </div>
+                    <input type="text" class="tags-input" placeholder="输入并回车添加...">
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Multi-Select Dropdown</h3>
+                <p class="section-desc">多选下拉菜单。</p>
+                <div class="multi-select-container">
+                    <div class="multi-select-trigger">请选择选项...</div>
+                    <div class="multi-select-dropdown">
+                        <label class="multi-select-option">
+                            <input type="checkbox" value="Option 1"> 选项 1
+                        </label>
+                        <label class="multi-select-option">
+                            <input type="checkbox" value="Option 2"> 选项 2
+                        </label>
+                        <label class="multi-select-option">
+                            <input type="checkbox" value="Option 3"> 选项 3
+                        </label>
+                        <label class="multi-select-option">
+                            <input type="checkbox" value="Option 4"> 选项 4
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card table-container full-width">
+                <h3>数据表格</h3>
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>ID</th><th>名称</th><th>状态</th><th>操作</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>项目 A</td><td><span class="tag green-tag">已发布</span></td><td><button class="btn small secondary"><i class="fas fa-eye"></i> 查看</button></td></tr>
+                            <tr><td>2</td><td>项目 B</td><td><span class="tag purple-tag">进行中</span></td><td><button class="btn small secondary"><i class="fas fa-edit"></i> 编辑</button></td></tr>
+                            <tr><td>3</td><td>项目 C</td><td><span class="tag pink-tag">待审核</span></td><td><button class="btn small danger"><i class="fas fa-trash"></i> 删除</button></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+      </section>
+
+      <section id="login" class="page center-mode">
+        <div class="card login-card">
+          <h2>TECHMAN</h2>
+          <form id="loginForm">
+            <input type="text" placeholder="用户名" class="input" required aria-label="Username" autocomplete="username">
+            <input type="password" placeholder="密码" class="input" required aria-label="Password" autocomplete="current-password">
+            <button type="submit" class="btn glow">立即登录</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast"></div>
+
+  <!-- Modal Structure -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>模态框标题</h2>
+        <p>这是一个模态框示例。可以在这里放置表单、信息或其他内容。</p>
+        <div class="modal-footer">
+            <button class="btn secondary small close-modal-btn">关闭</button>
+            <button class="btn primary small close-modal-btn">保存更改</button>
+        </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
