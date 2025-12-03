@@ -21,10 +21,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 /* 主内容区 */
 #content{padding:2rem;position: relative; overflow-x: hidden;}
 
-/* === 核心页面切换逻辑 - Vue Transition handled separately === */
-.page { display: none; opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease, transform 0.4s ease; }
-.page.active { display: block; opacity: 1; transform: translateY(0); }
-
 /* Vue Router View Transitions */
 .fade-enter-active,
 .fade-leave-active {
@@ -35,19 +31,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .fade-leave-to {
   opacity: 0;
   transform: translateY(10px);
-}
-
-
-/* 登录页全屏模式修复 */
-.page.center-mode.active {
-    display: flex;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background: linear-gradient(135deg,#667eea,#764ba2);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
 }
 /* Vue version for login page */
 .login-page {
