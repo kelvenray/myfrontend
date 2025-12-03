@@ -9,6 +9,15 @@ import Modal from '@/components/feedback/Modal.vue'
 import MultiSelect from '@/components/form/MultiSelect.vue'
 import TagsInput from '@/components/form/TagsInput.vue'
 import Collapse from '@/components/data-display/Collapse.vue'
+import Alerts from '@/components/feedback/Alerts.vue'
+import BadgeBreadcrumb from '@/components/data-display/BadgeBreadcrumb.vue'
+import ButtonGroup from '@/components/navigation/ButtonGroup.vue'
+import ListGroup from '@/components/data-display/ListGroup.vue'
+import ProgressBar from '@/components/feedback/ProgressBar.vue'
+import Rating from '@/components/feedback/Rating.vue'
+import NavbarDemo from '@/components/navigation/NavbarDemo.vue'
+import Pagination from '@/components/navigation/Pagination.vue'
+import PopoverTooltip from '@/components/feedback/PopoverTooltip.vue'
 
 const { showToast } = useToast()
 
@@ -59,12 +68,6 @@ const alerts = ref([
 ])
 const removeAlert = (index) => alerts.value.splice(index, 1)
 
-// Popover
-const showPopover = ref(false)
-const popoverTarget = ref(null)
-const togglePopover = (event) => {
-    showPopover.value = !showPopover.value
-}
 </script>
 
 <template>
@@ -170,25 +173,14 @@ const togglePopover = (event) => {
         <div class="card">
             <h3>进度条</h3>
             <p class="section-desc">任务进度展示。</p>
-            <div class="progress-container">
-                <div class="progress-label">75% 完成</div>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" style="width: 75%"></div>
-                </div>
-            </div>
+            <ProgressBar :value="75" />
         </div>
 
         <!-- Rating -->
         <div class="card">
             <h3>星级评分</h3>
             <p class="section-desc">用户评分组件。</p>
-            <div class="rating">
-                <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5星"><i class="fas fa-star"></i></label>
-                <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4星"><i class="fas fa-star"></i></label>
-                <input type="radio" id="star3" name="rating" value="3" checked><label for="star3" title="3星"><i class="fas fa-star"></i></label>
-                <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2星"><i class="fas fa-star"></i></label>
-                <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1星"><i class="fas fa-star"></i></label>
-            </div>
+            <Rating />
         </div>
 
         <!-- Accordion -->
@@ -202,55 +194,21 @@ const togglePopover = (event) => {
         <div class="card">
             <h3>Alerts (警告框)</h3>
             <p class="section-desc">反馈提示信息。</p>
-            <div v-for="(alert, index) in alerts" :key="index" :class="['alert', alert.type]">
-                <i :class="alert.icon"></i> 
-                <span>{{ alert.msg }}</span>
-                <span class="close-btn" @click="removeAlert(index)">&times;</span>
-            </div>
+            <Alerts :items="alerts" @close="removeAlert" />
         </div>
 
         <!-- Badge & Breadcrumb -->
         <div class="card">
             <h3>Badge & Breadcrumb</h3>
             <p class="section-desc">徽章与面包屑导航。</p>
-            <div style="margin-bottom: 1.5rem;">
-                <span class="badge primary">Primary</span>
-                <span class="badge secondary">Secondary</span>
-                <span class="badge success">Success</span>
-                <span class="badge danger">Danger</span>
-                <span class="badge warning">Warning</span>
-            </div>
-            <div style="margin-bottom: 1.5rem;">
-                <span class="badge rounded primary">12</span>
-                <span class="badge rounded success"><i class="fas fa-check"></i></span>
-                <span class="badge rounded danger">!</span>
-            </div>
-            
-            <h4 style="margin-bottom: 0.5rem; font-size: 1rem; color: var(--accent);">Breadcrumb</h4>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">首页</a></li>
-                    <li class="breadcrumb-item"><a href="#">管理</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">数据列表</li>
-                </ol>
-            </nav>
+            <BadgeBreadcrumb />
         </div>
 
         <!-- Button Group -->
         <div class="card">
             <h3>Button Group</h3>
             <p class="section-desc">组合按钮。</p>
-            <div class="btn-group">
-                <button class="btn small">左</button>
-                <button class="btn small">中</button>
-                <button class="btn small">右</button>
-            </div>
-            <br><br>
-            <div class="btn-group vertical">
-                <button class="btn small">顶部</button>
-                <button class="btn small">中间</button>
-                <button class="btn small">底部</button>
-            </div>
+            <ButtonGroup />
         </div>
 
         <!-- Collapse -->
@@ -258,7 +216,14 @@ const togglePopover = (event) => {
             <h3>Collapse</h3>
             <p class="section-desc">折叠内容切换。</p>
             <Collapse>
-                这里是被折叠的内容。它可以包含任何信息，点击上方按钮来切换显示或隐藏。
+                <template #trigger>
+                    <button class="btn primary small">切换显示状态</button>
+                </template>
+                <template #default>
+                    <div class="collapse-card-body">
+                        这里是被折叠的内容。它可以包含任何信息，点击上方按钮来切换显示或隐藏。
+                    </div>
+                </template>
             </Collapse>
         </div>
 
@@ -266,87 +231,35 @@ const togglePopover = (event) => {
         <div class="card">
             <h3>List Group</h3>
             <p class="section-desc">列表组。</p>
-            <ul class="list-group">
-                <li class="list-group-item active">
-                    <i class="fas fa-star"></i> 活跃项
-                </li>
-                <li class="list-group-item">
-                    <i class="fas fa-envelope"></i> 收件箱 
-                    <span class="badge rounded primary" style="font-size: 0.7em; padding: 0.2em 0.5em; margin-left: auto;">14</span>
-                </li>
-                <li class="list-group-item">
-                    <i class="fas fa-cog"></i> 设置
-                </li>
-                <li class="list-group-item disabled">
-                    <i class="fas fa-ban"></i> 禁用项
-                </li>
-            </ul>
+            <ListGroup />
         </div>
 
         <!-- Tabs -->
         <div class="card col-span-2">
             <h3>Navs & Tabs (标签页)</h3>
             <p class="section-desc">内容切换组件。</p>
-            <Tabs :tabs="tabItems" />
+            <Tabs :items="tabItems" />
         </div>
 
         <!-- Navbar -->
         <div class="card col-span-2">
             <h3>Navbar (导航栏)</h3>
             <p class="section-desc">顶部导航演示。</p>
-            <nav class="navbar-demo">
-                <a href="#" class="navbar-brand">Logo</a>
-                <div class="navbar-menu">
-                    <a href="#" class="navbar-item active">Home</a>
-                    <a href="#" class="navbar-item">Link</a>
-                    <div class="navbar-item dropdown-toggle">
-                        <span>Menu <i class="fas fa-caret-down"></i></span>
-                    </div>
-                </div>
-            </nav>
+            <NavbarDemo />
         </div>
 
         <!-- Pagination -->
         <div class="card">
             <h3>Pagination (分页)</h3>
             <p class="section-desc">多页数据导航。</p>
-            <div class="pagination-wrapper">
-                <ul class="pagination">
-                    <li class="page-item disabled"><a href="#" class="page-link"><i class="fas fa-chevron-left"></i></a></li>
-                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link"><i class="fas fa-chevron-right"></i></a></li>
-                </ul>
-                <div class="page-jump">
-                    <span>跳转至</span>
-                    <input type="number" class="page-jump-input" placeholder="#" min="1">
-                    <span>页</span>
-                </div>
-            </div>
+            <Pagination />
         </div>
 
         <!-- Popovers & Tooltips -->
         <div class="card">
             <h3>Popovers & Tooltips</h3>
             <p class="section-desc">浮层提示信息。</p>
-            <button class="btn secondary small popover-trigger" data-content="这是一段弹出框的内容！">
-                点击显示 Popover
-            </button>
-            <br><br>
-            <button class="btn secondary small tooltip-trigger" data-tooltip="这是一个工具提示">
-                悬停显示 Tooltip
-            </button>
-        </div>
-
-        <!-- Modals & Toasts -->
-        <div class="card">
-            <h3>Modals & Toasts</h3>
-            <p class="section-desc">模态框与通知。</p>
-            <div style="display: flex; flex-direction: column; gap: 1rem;">
-                <button class="btn primary small" @click="showModal = true" style="margin-bottom: 0;">打开模态框 (Modal)</button>
-                <button class="btn success small" @click="showToast('这是一条成功的通知消息！', 'success')" style="margin-bottom: 0;">显示通知 (Toast)</button>
-            </div>
+            <PopoverTooltip />
         </div>
 
         <!-- Tags Input -->
