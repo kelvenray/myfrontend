@@ -1,8 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
-:root{--bg:#0f0f1a;--card:#1c1c2e;--text:#e2e8f0;--accent:#8b5cf6;--pink:#ec4899;--green:#10b981;--red:#ef4444;--radius:24px;--shadow:0 12px 40px rgba(0,0,0,.4)}
-[data-theme=light]{--bg:#f1f5f9;--card:#fff;--text:#1e293b;--shadow:0 12px 40px rgba(0,0,0,.08);--input-bg: #f5f5f9; --hover-bg: #f5f5f9;}
-[data-theme=dark]{--input-bg: rgba(255,255,255,.1); --hover-bg: rgba(255,255,255,.05);}
+:root{--bg:#0f0f1a;--card:#1c1c2e;--text:#e2e8f0;--radius:24px;--shadow:0 12px 40px rgba(0,0,0,.4);--accent:#8b5cf6;--secondary:#ec4899;--success:#10b981;--danger:#ef4444;--warning:#f59e0b;--pink:var(--secondary);--green:var(--success);--red:var(--danger)}
+[data-theme=light]{--bg:#f1f5f9;--card:#fff;--text:#1e293b;--shadow:0 12px 40px rgba(0,0,0,.08);--input-bg:#f5f5f9;--hover-bg:#f5f5f9}
+[data-theme=dark]{--input-bg:rgba(255,255,255,.1);--hover-bg:rgba(255,255,255,.05)}
+
+/* Color Schemes */
+[data-scheme="purple"]{--accent:#8b5cf6;--secondary:#ec4899;--success:#10b981;--danger:#ef4444;--warning:#f59e0b}
+[data-scheme="techman"]{--accent:#f97316;--secondary:#14b8a6;--success:#10b981;--danger:#ef4444;--warning:#f59e0b}
+[data-theme="dark"][data-scheme="techman"]{--bg:linear-gradient(135deg,#1a1a1a,#2d3748);--card:#262626}
+[data-scheme="ocean"]{--accent:#3b82f6;--secondary:#06b6d4;--success:#10b981;--danger:#ef4444;--warning:#f59e0b}
+[data-scheme="forest"]{--accent:#10b981;--secondary:#059669;--success:#10b981;--danger:#ef4444;--warning:#f59e0b}
+[data-scheme="sunset"]{--accent:#ef4444;--secondary:#ec4899;--success:#10b981;--danger:#ef4444;--warning:#f59e0b}
 
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .4s, color .4s}
@@ -32,6 +40,12 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
   opacity: 0;
   transform: translateY(10px);
 }
+
+/* Color scheme panel */
+#colorSchemePanel{position:fixed;right:24px;bottom:24px;background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:12px;display:none;gap:8px}
+#colorSchemePanel.open{display:flex}
+.scheme-option{width:28px;height:28px;border-radius:8px;cursor:pointer;opacity:.9;border:2px solid transparent}
+.scheme-option.active{outline:3px solid rgba(255,255,255,.15);border-color:var(--text)}
 /* Vue version for login page */
 .login-page {
     display: flex;
