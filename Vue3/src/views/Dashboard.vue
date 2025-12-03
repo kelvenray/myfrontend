@@ -1,4 +1,9 @@
 <template>
+  <script setup>
+  // Dashboard view
+  </script>
+
+  <template>
   <section>
     <h1 class="title">欢迎回来！</h1>
     <div class="grid">
