@@ -41,11 +41,50 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
   transform: translateY(10px);
 }
 
-/* Color scheme panel */
-#colorSchemePanel{position:fixed;right:24px;bottom:24px;background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:12px;display:none;gap:8px}
-#colorSchemePanel.open{display:flex}
-.scheme-option{width:28px;height:28px;border-radius:8px;cursor:pointer;opacity:.9;border:2px solid transparent}
-.scheme-option.active{outline:3px solid rgba(255,255,255,.15);border-color:var(--text)}
+/* Color Scheme Panel */
+#colorSchemePanel {
+    position: fixed;
+    bottom: 7rem;
+    right: 2rem;
+    background: var(--card);
+    padding: 1rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    border: 1px solid var(--accent);
+    transform: translateY(20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#colorSchemePanel.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.scheme-option {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s;
+    position: relative;
+}
+
+.scheme-option:hover {
+    transform: scale(1.1);
+}
+
+.scheme-option.active {
+    border-color: white;
+    box-shadow: 0 0 0 2px var(--card), 0 0 0 4px var(--accent);
+}
 /* Vue version for login page */
 .login-page {
     display: flex;
@@ -733,7 +772,7 @@ input:checked + .slider:before {
 }
 
 /* Floating Actions */
-#themeBtn {
+#themeBtn, #colorSchemeBtn {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
@@ -754,7 +793,12 @@ input:checked + .slider:before {
     transition: all 0.3s;
 }
 
-#themeBtn:hover {
+#colorSchemeBtn {
+    right: 6.5rem; /* Left of theme btn */
+    font-size: 1.2rem;
+}
+
+#themeBtn:hover, #colorSchemeBtn:hover {
     transform: rotate(15deg) scale(1.1);
 }
 

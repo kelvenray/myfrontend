@@ -238,7 +238,7 @@ const removeAlert = (index) => alerts.value.splice(index, 1)
         <div class="card col-span-2">
             <h3>Navs & Tabs (标签页)</h3>
             <p class="section-desc">内容切换组件。</p>
-            <Tabs :items="tabItems" />
+            <Tabs :tabs="tabItems" />
         </div>
 
         <!-- Navbar -->
@@ -294,9 +294,8 @@ const removeAlert = (index) => alerts.value.splice(index, 1)
         </div>
 
     </div>
+    <Modal :isOpen="showModal" title="模态框标题" @close="showModal = false" @save="showModal = false">
+        <p>这是一个模态框示例。可以在这里放置表单、信息或其他内容。</p>
+    </Modal>
   </section>
-
-  <Modal :isOpen="showModal" title="模态框标题" @close="showModal = false" @save="showModal = false">
-      <p>这是一个模态框示例。可以在这里放置表单、信息或其他内容。</p>
-  </Modal>
 </template>
