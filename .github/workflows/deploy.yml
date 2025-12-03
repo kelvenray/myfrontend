@@ -26,8 +26,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: './Vue3/package-lock.json'
+          # 由于仓库中没有 package-lock.json，关闭 npm 缓存避免报错
 
       - name: Install dependencies
         working-directory: ./Vue3
