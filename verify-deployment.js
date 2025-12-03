@@ -14,6 +14,14 @@ const path = require('path');
 
   console.log('🚀 Starting deployment verification...\n');
   
+  // Set up console error listener before navigation
+  const errors = [];
+  page.on('console', msg => {
+    if (msg.type() === 'error') {
+      errors.push(msg.text());
+    }
+  });
+  
   try {
     // Navigate to the deployed site
     console.log('📍 Navigating to https://kelvenray.github.io/myfrontend/');
@@ -93,14 +101,6 @@ const path = require('path');
       fullPage: true 
     });
     console.log('\n✅ Rapid navigation test completed successfully!\n');
-    
-    // Check for console errors
-    const errors = [];
-    page.on('console', msg => {
-      if (msg.type() === 'error') {
-        errors.push(msg.text());
-      }
-    });
     
     console.log('✨ All validations completed successfully!');
     console.log(`📁 Screenshots saved to: ${screenshotsDir}`);
