@@ -68,7 +68,7 @@ const togglePopover = (event) => {
 </script>
 
 <template>
-  <section id="form" class="page active">
+  <section id="form">
     <h1 class="title">控件展示</h1>
     <div class="grid control-grid">
 

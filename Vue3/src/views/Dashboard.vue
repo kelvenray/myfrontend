@@ -1,5 +1,5 @@
 <template>
-  <section class="page active">
+  <section>
     <h1 class="title">欢迎回来！</h1>
     <div class="grid">
       <div class="stat purple"><h3>活跃用户</h3><div>12,485</div></div>

@@ -19,7 +19,7 @@ const handleLogin = () => {
 </script>
 
 <template>
-  <section id="login" class="page center-mode active">
+  <section id="login" class="login-page">
     <div class="card login-card">
       <h2>TECHMAN</h2>
       <form @submit.prevent="handleLogin">

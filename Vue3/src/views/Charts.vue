@@ -49,7 +49,7 @@ const chart3Options = ref({
 </script>
 
 <template>
-  <section id="charts" class="page active">
+  <section id="charts">
     <h1 class="title">数据可视化</h1>
     <div class="grid">
       <div class="card">
