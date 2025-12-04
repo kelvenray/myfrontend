@@ -225,6 +225,12 @@ const removeAlert = (index) => alerts.value.splice(index, 1)
                     </div>
                 </template>
             </Collapse>
+            
+            <div style="margin-top: 1rem;">
+                <Collapse>
+                    <p>第二个折叠演示：使用默认切换按钮。点击按钮查看更多详细信息和说明内容。</p>
+                </Collapse>
+            </div>
         </div>
 
         <!-- List Group -->
