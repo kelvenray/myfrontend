@@ -12,3 +12,7 @@ Thumbs.db
 *.tmp
 *.bak
 .7z.bak
+package-lock.json
+test-results/
+playwright-report/
+deployment-screenshots/
