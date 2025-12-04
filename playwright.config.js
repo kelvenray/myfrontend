@@ -9,7 +9,7 @@ module.exports = defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: 'http://localhost:8080/myfrontend',
+    baseURL: 'http://localhost:5173/myfrontend/',
     trace: 'on-first-retry',
     screenshot: 'on',
   },
@@ -22,8 +22,9 @@ module.exports = defineConfig({
   ],
 
   webServer: {
-    command: 'npx http-server Vue3/dist -p 8080',
-    url: 'http://localhost:8080/myfrontend',
+    command: 'npm run dev',
+    cwd: './Vue3',
+    url: 'http://localhost:5173/myfrontend/',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
   },
