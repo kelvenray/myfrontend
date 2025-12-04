@@ -25,7 +25,7 @@
 </template>
 
 <style scoped>
-.badges { display:flex; gap:.5rem; align-items:center; }
+.badges { display:flex; gap:.5rem; align-items:center; flex-wrap: wrap; }
 .badge { background: var(--card); padding: .35rem .6rem; border-radius: 10px; box-shadow: var(--shadow); font-size: .85rem; }
 .badge.primary{ background: var(--accent); color: #fff; }
 .badge.secondary{ background: var(--pink); color: #fff; }
@@ -33,7 +33,7 @@
 .badge.danger{ background: var(--red); color: #fff; }
 .badge.warning{ background: var(--warning); color: #fff; }
 .badge.rounded{ border-radius: 999px; }
-.breadcrumb { list-style: none; display:flex; gap:.4rem; color:#94a3b8; }
+.breadcrumb { list-style: none; display:flex; gap:.4rem; color:#94a3b8; flex-wrap: wrap; }
 .breadcrumb-item a{ color: var(--accent); text-decoration:none; }
 .breadcrumb-item.active{ color:#94a3b8; }
 </style>
