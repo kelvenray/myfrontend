@@ -1,5 +1,14 @@
 eShopVue3Demo/
 node_modules/
 dist/
+Vue3/node_modules/
+Vue3/dist/
 *.log
+npm-debug.log*
 .DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.tmp
+*.bak
+.7z.bak

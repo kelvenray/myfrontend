@@ -49,8 +49,8 @@ const toggleSidebar = () => {
 </script>
 
 <template>
-  <button id="themeBtn" class="fab" aria-label="Toggle Theme" @click="toggleTheme">
-    {{ theme === 'dark' ? 'MOON' : 'SUN' }}
+  <button id="themeBtn" class="fab top-right" aria-label="Toggle Theme" @click="toggleTheme">
+    <i :class="theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun'"></i>
   </button>
   <button id="colorSchemeBtn" class="fab" aria-label="Change Color Scheme" @click="toggleSchemePanel">
     <i class="fas fa-palette"></i>
@@ -75,8 +75,11 @@ const toggleSidebar = () => {
 
     <main id="content">
       <router-view v-slot="{ Component, route }">
-        <transition name="fade" mode="out-in">
-          <component :is="Component" :key="route.path" />
+        <transition name="fade" mode="out-in" appear>
+          <!-- Use route.path as key to force component re-render on navigation, preventing blank page issues during transitions -->
+          <div :key="route.path">
+            <component :is="Component" />
+          </div>
         </transition>
       </router-view>
     </main>

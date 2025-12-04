@@ -38,6 +38,7 @@ const updateColors = () => {
 
 onMounted(() => {
   initChart()
+  // react to color scheme changes by reading CSS variables
   window.addEventListener('schemechange', updateColors)
   window.addEventListener('resize', resizeHandler)
 })
